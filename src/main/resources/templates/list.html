@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang=”en” xmlns:th=”www.thymeleaf.org”>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<h2>To Do List</h2>
+<a th:href="@{/add}"><button>Add New Task</button></a>
+<table>
+    <tr th:if="${tasks == 0}">
+        <th>
+            You don't have any tasks today.
+        </th>
+    </tr>
+
+    <tr>
+        <th>Task</th>
+        <th>Priority</th>
+        <th>Date</th>
+    </tr>
+
+    <tr th:each="task : ${tasks}">
+        <td>[[${task.taskName}]]</td>
+        <td>[[${task.priority}]]</td>
+        <td>[[${task.date}]]</td>
+
+        <td>
+            <a th:href="@{/update/{id}(id=${task.id})}"><button>Update</button></a>
+            <a th:href="@{/delete/{id}(id=${task.id})}"><button>Delete</button></a>
+        </td>
+
+    </tr>
+</table>
+
+
+</body>
+</html>
